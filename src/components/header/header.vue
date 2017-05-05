@@ -13,7 +13,7 @@
                 {{ seller.description }}/{{ seller.deliveryTime }}分钟送达
             </div>
             <div v-if="seller.supports" class="support">
-                <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+                <supporticon :type="seller.supports[0].type" size="1"></supporticon>
                 <span class="text">{{ seller.supports[0].description }}</span>
             </div>
         </div>
@@ -40,7 +40,7 @@
 					<v-title title="优惠信息"></v-title>
 					<ul v-if="seller.supports" class="supports">
 						<li class="support-item" v-for="(item, index) in seller.supports">
-							<span class="icon" :class="classMap[seller.supports[index].type]"></span>
+                            <supporticon :type="seller.supports[index].type" size="2"></supporticon>
 							<span class="text">{{ seller.supports[index].description }}</span>
 						</li>
 					</ul>
@@ -61,6 +61,7 @@
 <script>
   import star from '../star/star'
   import title from '../title/title'
+  import supporticon from '../supports/icon'
 
   export default {
     props: ['seller'],
@@ -82,7 +83,8 @@
     },
     components: {
       'star': star,
-      'v-title': title
+      'v-title': title,
+      'supporticon': supporticon
     }
   }
 
@@ -137,16 +139,6 @@
                         margin-right: 4px
                         background-size: 12px 12px
                         background-repeat: no-repeat
-                        &.decrease
-                            bg-image('decrease_1')
-                        &.discount
-                            bg-image('discount_1')
-                        &.guarantee
-                            bg-image('guarantee_1')
-                        &.invoice
-                            bg-image('invoice_1')
-                        &.special
-                            bg-image('special_1')
                     .text
                         line-height: 12px
                         font-size: 10px
@@ -252,16 +244,6 @@
 									margin-right: 6px
 									background-size: 16px 16px
 									background-repeat: no-repeat
-									&.decrease
-										bg-image('decrease_2')
-									&.discount
-										bg-image('discount_2')
-									&.guarantee
-										bg-image('guarantee_2')
-									&.invoice
-										bg-image('invoice_2')
-									&.special
-										bg-image('special_2')
 								.text
 									line-height: 16px
 									font-size: 12px

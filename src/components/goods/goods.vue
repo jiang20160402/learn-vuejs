@@ -3,10 +3,10 @@
     <div class="menu-wrapper">
       <ul>
         <li v-for="item in goods" class="menu-item">
-          <span class="text">
-            <supporticon v-show="item.type>0"></supporticon>
-            {{ item.name }}
-          </span>
+            <span class="text border-1px">
+              <supporticon v-if="item.type>0" :type="item.type" size="3"></supporticon>
+              {{ item.name }}
+            </span>
         </li>
       </ul>
     </div>
@@ -50,6 +50,8 @@
 </script>
 
 <style lang="stylus">
+  @import "../../common/stylus/mixin.styl"
+
   .goods
     display: flex
     position: absolute
@@ -65,7 +67,22 @@
         display: table
         height: 54px
         width: 56px
+        padding: 0 12px
         line-height: 14px
+        .icon
+          display: inline-block
+          width: 12px
+          height: 12px
+          vertical-align: top
+          margin-right: 2px
+          background-size: 12px 12px
+          background-repeat: no-repeat
+        .text
+          display: table-cell
+          width: 56px
+          vertical-align: middle
+          border-1px(rgba(7, 17, 27, 0.1))          
+          font-size: 12px
     .foods-wrapper
       flex: 1
 </style>
